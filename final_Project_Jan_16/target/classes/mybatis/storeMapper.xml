@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.storeMapper">
+	<select id="selectstore">
+		SELECT * FROM tb_st
+	</select>
+
+	<select id="getStore" resultType="com.example.demo.dto.storeDTO">
+		SELECT st_nm, st_dt, st_mp, st_mu  FROM
+		tb_st
+	</select>
+
+	<insert id="addStore">
+		INSERT INTO tb_st(st_nm, st_dt, st_mu, st_mp_x, st_mp_y, st_tel, st_mp)
+		VALUES (#{st_nm}, #{st_dt}, #{st_mu}, #{st_mp_x}, #{st_mp_y}, #{st_tel}, #{st_mp})
+	</insert>
+
+	<select id="getStoreOne"
+		resultType="com.example.demo.dto.storeDTO">
+		SELECT st_nm, st_dt, st_mu, st_tel, st_mp FROM tb_st
+		WHERE st_nm = #{st_nm}
+	</select>
+
+	<update id="storeModify"
+		parameterType="com.example.demo.dto.storeDTO">
+		UPDATE tb_st SET st_nm = #{st_nm}, st_mp_x = #{st_mp_x}, st_mp_y = #{st_mp_y}, st_dt = #{st_dt}, st_mu = #{st_mu}, st_tel = #{st_tel}, st_mp = #{st_mp} WHERE st_nm = #{st_nm}
+	</update>
+
+	<delete id="storeDelete">
+		DELETE FROM tb_st WHERE st_nm = #{st_nm};
+	</delete>
+	
+	<select id="getAlert"
+		resultType="com.example.demo.dto.storeDTO">
+		SELECT st_nm, st_dt, st_mu, st_tel, st_mp FROM tb_st
+		WHERE st_nm = #{st_nm}
+	</select>
+
+</mapper>

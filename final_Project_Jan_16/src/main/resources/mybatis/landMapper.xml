@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.landMapper">
+	<select id="selectLand">
+		SELECT * FROM tb_land
+	</select>
+
+	<select id="getLand" resultType="com.example.demo.dto.landDTO">
+		SELECT la_mp, la_nm, dev_ui FROM
+		tb_land
+	</select>
+
+	<insert id="addLand">
+		INSERT INTO tb_land(la_nm, la_dt_k, la_dt_e, la_mp, dev_ui, la_mp_x, la_mp_y)
+		VALUES (#{la_nm}, #{la_dt_k}, #{la_dt_e}, #{la_mp}, #{dev_ui}, #{la_mp_x}, #{la_mp_y})
+	</insert>
+
+	<select id="getLandOne"
+		resultType="com.example.demo.dto.landDTO">
+		SELECT la_mp, la_nm, la_dt_k, la_dt_e, dev_ui, la_mp_x, la_mp_y FROM tb_land
+		WHERE la_nm = #{la_nm}
+	</select>
+
+	<update id="landModify"
+		parameterType="com.example.demo.dto.landDTO">
+		UPDATE tb_land SET la_nm = #{la_nm}, la_dt_k =
+		#{la_dt_k}, la_dt_e = #{la_dt_e}, dev_ui = #{dev_ui}, la_mp = #{la_mp}, la_mp_x = #{la_mp_x}, la_mp_y = #{la_mp_y} WHERE la_nm = #{la_nm}
+	</update>
+
+	<delete id="landDelete">
+		DELETE FROM tb_land WHERE la_nm = #{la_nm};
+	</delete>
+	
+	<select id="getAddr" resultType="com.example.demo.dto.landDTO">
+		SELECT la_mp_x, la_mp_y FROM tb_land
+	</select>
+
+</mapper>
